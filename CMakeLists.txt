@@ -37,7 +37,7 @@ add_library(DeciBeliever_lib STATIC
     src/generator.cpp
 
 )
-target_include_directories(audio_verifier_lib PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(DeciBeliever_lib PUBLIC ${CMAKE_SOURCE_DIR}/include)
 target_link_libraries(DeciBeliever_lib PUBLIC dr_wav kissfft nlohmann_json::nlohmann_json)
 
 # ---------- executable ----------
@@ -50,9 +50,9 @@ if(PkgConfig_FOUND)
   pkg_check_modules(PORTAUDIO QUIET portaudio-2.0)
 endif()
 if(PORTAUDIO_FOUND)
-  target_compile_definitions(audio_verifier_lib PUBLIC HAS_PORTAUDIO)
-  target_include_directories(audio_verifier_lib PUBLIC ${PORTAUDIO_INCLUDE_DIRS})
-  target_link_libraries(audio_verifier_lib PUBLIC ${PORTAUDIO_LIBRARIES})
+  target_compile_definitions(DeciBeliever_lib PUBLIC HAS_PORTAUDIO)
+  target_include_directories(DeciBeliever_lib PUBLIC ${PORTAUDIO_INCLUDE_DIRS})
+  target_link_libraries(DeciBeliever_lib PUBLIC ${PORTAUDIO_LIBRARIES})
   message(STATUS "PortAudio found – live capture enabled")
 else()
   message(STATUS "PortAudio not found – live capture disabled")
