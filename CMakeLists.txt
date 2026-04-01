@@ -8,14 +8,14 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 # ---------- third-party headers ----------
 # dr_wav  – single-header WAV parser
 add_library(dr_wav INTERFACE)
-target_include_directories(dr_wav INTERFACE ${CMAKE_SOURCE_DIR}/third_party/dr_wav)
+target_include_directories(dr_wav INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/third_party/dr_wav)
 
 # kissfft – small, portable FFT
 add_library(kissfft STATIC
-    ${CMAKE_SOURCE_DIR}/third_party/kissfft/kiss_fft.c
-    ${CMAKE_SOURCE_DIR}/third_party/kissfft/kiss_fftr.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kissfft/kiss_fft.c
+  ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kissfft/kiss_fftr.c
 )
-target_include_directories(kissfft PUBLIC ${CMAKE_SOURCE_DIR}/third_party/kissfft)
+target_include_directories(kissfft PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kissfft)
 
 # nlohmann/json is fetched via FetchContent (header-only)
 include(FetchContent)
@@ -37,7 +37,7 @@ add_library(DeciBeliever_lib STATIC
     src/generator.cpp
 
 )
-target_include_directories(DeciBeliever_lib PUBLIC ${CMAKE_SOURCE_DIR}/include)
+target_include_directories(DeciBeliever_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 target_link_libraries(DeciBeliever_lib PUBLIC dr_wav kissfft nlohmann_json::nlohmann_json)
 
 # ---------- executable ----------
@@ -59,5 +59,7 @@ else()
 endif()
 
 # ---------- tests ----------
-enable_testing()
-add_subdirectory(tests)
+if(PROJECT_IS_TOP_LEVEL)
+  enable_testing()
+  add_subdirectory(tests)
+endif()
