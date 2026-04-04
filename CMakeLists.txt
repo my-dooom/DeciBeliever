@@ -12,8 +12,8 @@ target_include_directories(dr_wav INTERFACE ${CMAKE_CURRENT_SOURCE_DIR}/third_pa
 
 # kissfft – small, portable FFT
 add_library(kissfft STATIC
-  ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kissfft/kiss_fft.c
-  ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kissfft/kiss_fftr.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kissfft/kiss_fft.c
+    ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kissfft/kiss_fftr.c
 )
 target_include_directories(kissfft PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/third_party/kissfft)
 
